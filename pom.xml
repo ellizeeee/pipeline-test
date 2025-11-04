@@ -4,7 +4,7 @@
 
 	<groupId>048fef4a-ea9f-413c-a5fa-73039154b88a</groupId>
 	<artifactId>pipeline-test</artifactId>
-	<version>1.0.7</version>
+	<version>1.0.8</version>
 	<packaging>mule-application</packaging>
 
 	<name>pipeline-test</name>
@@ -12,7 +12,6 @@
 	<properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <app.runtime>4.9.6</app.runtime>
 		<mule.maven.plugin.version>4.5.3</mule.maven.plugin.version>
     </properties>
     
@@ -40,7 +39,6 @@
                         <releaseChannel>EDGE</releaseChannel>
                         <replicas>1</replicas>
                         <vCores>0.1</vCores>
-                        <muleVersion>${app.runtime}</muleVersion>
                         <deploymentSettings>
                             <generateDefaultPublicUrl>true</generateDefaultPublicUrl>
                         </deploymentSettings>
