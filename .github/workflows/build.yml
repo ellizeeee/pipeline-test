@@ -39,7 +39,8 @@ jobs:
           -Dmule.env="Sandbox" \
           -DappName="${{vars.APPNAME}}-dev" \
           -Dclient.id="${{secrets.CONNECTED_APP_CLIENT_ID}}" \
-          -Dclient.secret="${{secrets.CONNECTED_APP_CLIENT_SECRET}}" 
+          -Dclient.secret="${{secrets.CONNECTED_APP_CLIENT_SECRET}}" \
+          -DmuleVersion="${{vars.MULEVERSION}}"
 
   deploy-sit:
     runs-on: ubuntu-latest
@@ -80,6 +81,7 @@ jobs:
           -DappName="${{vars.APPNAME}}-sit" \
           -Dclient.id="${{secrets.CONNECTED_APP_CLIENT_ID}}" \
           -Dclient.secret="${{secrets.CONNECTED_APP_CLIENT_SECRET}}" \
+          -DmuleVersion="${{vars.MULEVERSION}}" \
           -Dvault.key="${{secrets.VAULT_KEY_NON_PROD}}" \
           -Danypoint.platform.client_id="${{secrets.AP_CLIENT_ID_NON_PROD}}" \
           -Danypoint.platform.client_secret="${{secrets.AP_CLIENT_SECRET_NON_PROD}}" \
