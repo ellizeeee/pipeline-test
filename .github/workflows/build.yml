@@ -55,7 +55,7 @@ jobs:
       - name: Deploy to CloudHub 2.0
         run: |
           mvn clean deploy --settings .maven/settings.xml -DmuleDeploy -DskipMunitTests \
-          -Dmule.env="SANDBOX" \
+          -Dmule.env="Sandbox" \
           -DappName="${{vars.APPNAME}}-dev" \
           -Dclient.id="${{secrets.CONNECTED_APP_CLIENT_ID}}" \
           -Dclient.secret="${{secrets.CONNECTED_APP_CLIENT_SECRET}}" 
