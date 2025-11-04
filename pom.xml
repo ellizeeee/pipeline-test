@@ -4,7 +4,7 @@
 
 	<groupId>048fef4a-ea9f-413c-a5fa-73039154b88a</groupId>
 	<artifactId>pipeline-test</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<packaging>mule-application</packaging>
 
 	<name>pipeline-test</name>
@@ -32,10 +32,10 @@
                     <cloudhub2Deployment>
                         <uri>https://anypoint.mulesoft.com</uri>
                         <provider>MC</provider>
-                        <environment>Sandbox</environment>
+                        <environment>${mule.env}</environment>
                         <target>Cloudhub-US-East-2</target>
                         <server>Repository</server>
-                        <applicationName>${project.artifactId}</applicationName>
+                        <applicationName>${appName}</applicationName>
                         <releaseChannel>EDGE</releaseChannel>
                         <replicas>1</replicas>
                         <vCores>0.1</vCores>
