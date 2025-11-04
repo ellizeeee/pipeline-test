@@ -23,9 +23,9 @@ jobs:
         with:
           distribution: "zulu"
           java-version: 8
-  deploy:
-    needs: build
-    deploy-sanbox:
+  
+  deploy-sanbox:
+    needs: build    
     runs-on: ubuntu-latest
     environment:
       name: SANDBOX
@@ -61,6 +61,7 @@ jobs:
           -Dclient.secret="${{secrets.CONNECTED_APP_CLIENT_SECRET}}" 
 
   deploy-sit:
+    needs: build
     runs-on: ubuntu-latest
     environment:
       name: SIT
