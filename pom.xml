@@ -4,7 +4,7 @@
 
 	<groupId>048fef4a-ea9f-413c-a5fa-73039154b88a</groupId>
 	<artifactId>pipeline-test</artifactId>
-	<version>1.0.6</version>
+	<version>1.0.7</version>
 	<packaging>mule-application</packaging>
 
 	<name>pipeline-test</name>
@@ -40,7 +40,7 @@
                         <releaseChannel>EDGE</releaseChannel>
                         <replicas>1</replicas>
                         <vCores>0.1</vCores>
-                        <runtimeVersion>${app.runtime}</runtimeVersion>
+                        <muleVersion>${app.runtime}</muleVersion>
                         <deploymentSettings>
                             <generateDefaultPublicUrl>true</generateDefaultPublicUrl>
                         </deploymentSettings>
