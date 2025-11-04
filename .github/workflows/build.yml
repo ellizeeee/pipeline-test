@@ -4,28 +4,8 @@ on:
   push:
     branches: [ develop ]
     
-jobs:         
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout this repo
-        uses: actions/checkout@v4
-
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: ${{ runner.os }}-maven-
-
-      - name: Set up JDK 1.8
-        uses: actions/setup-java@v4
-        with:
-          distribution: "zulu"
-          java-version: 8
-  
-  deploy-sanbox:
-    needs: build    
+jobs:           
+  deploy-sanbox: 
     runs-on: ubuntu-latest
     environment:
       name: SANDBOX
@@ -52,6 +32,7 @@ jobs:
           mvn deploy --settings .maven/settings.xml -DskipMunitTests \
           -Dclient.id="${{ secrets.CONNECTED_APP_CLIENT_ID }}" \
           -Dclient.secret="${{ secrets.CONNECTED_APP_CLIENT_SECRET }}"
+          
       - name: Deploy to CloudHub 2.0
         run: |
           mvn clean deploy --settings .maven/settings.xml -DmuleDeploy -DskipMunitTests \
@@ -61,12 +42,27 @@ jobs:
           -Dclient.secret="${{secrets.CONNECTED_APP_CLIENT_SECRET}}" 
 
   deploy-sit:
-    needs: build
     runs-on: ubuntu-latest
     environment:
       name: SIT
     if: ${{ github.ref == 'refs/heads/sit' && github.event.pull_request.merged == true }}
     steps:
+      - name: Checkout this repo
+        uses: actions/checkout@v4
+
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-maven-
+
+      - name: Set up JDK 1.8
+        uses: actions/setup-java@v4
+        with:
+          distribution: "zulu"
+          java-version: 8
+          
       - name: Publish to Exchange
         run: |
           mvn clean deploy --settings .maven/settings.xml \
