@@ -49,12 +49,12 @@ jobs:
           
       - name: Publish to Exchange
         run: |
-          mvn deploy --settings ~/.m2/settings.xml -DskipMunitTests \
+          mvn deploy --settings .maven/settings.xml -DskipMunitTests \
           -Dclient.id="${{ secrets.CONNECTED_APP_CLIENT_ID }}" \
           -Dclient.secret="${{ secrets.CONNECTED_APP_CLIENT_SECRET }}"
       - name: Deploy to CloudHub 2.0
         run: |
-          mvn clean deploy --settings ~/.m2/settings.xml -DmuleDeploy -DskipMunitTests \
+          mvn clean deploy --settings .maven/settings.xml -DmuleDeploy -DskipMunitTests \
           -Dmule.env="SANDBOX" \
           -DappName="${{vars.APPNAME}}-dev" \
           -Dclient.id="${{secrets.CONNECTED_APP_CLIENT_ID}}" \
